@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { fetchListings, type Listing } from "../api/listingsApi/GetListings"
+import { fetchListings, type Listing } from "../api/listingService/GetListings"
 
 
 const ListingsPage = () => {
