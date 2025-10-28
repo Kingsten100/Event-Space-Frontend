@@ -1,0 +1,48 @@
+.navbar-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-container{
+  max-width: 75px;
+  max-height: 75px;
+}
+
+.logo-img{
+  width: 100%;
+}
+
+.navbar-btns{
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.navlinks-container{
+  display: flex;
+  gap: 2rem;
+}
+
+.navlink-item{
+  list-style: none;
+  
+}
+
+.navlink-style{
+  text-decoration: none;
+  color: black;
+}
+
+.active{
+  text-decoration: underline;
+}
+
+.login-btn{
+  border: none;
+  background-color: #FF6B6B;
+  padding: .5rem 1.3rem;
+  border-radius: 5rem;
+  font-weight: 600;
+  font-size: 1rem;
+}

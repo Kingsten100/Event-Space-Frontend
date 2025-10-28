@@ -8,6 +8,7 @@ import DetailPage from './pages/DetailPage'
 import ListingsPage from './pages/ListingsPage'
 
 
+
 function App() {
   
 
