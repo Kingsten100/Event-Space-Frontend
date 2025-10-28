@@ -1,0 +1,37 @@
+.footer-wrapper{
+  background-color: #1A535C;
+  border-radius: 2rem 2rem 0 0 ;
+}
+
+.footer-flex{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.links-container{
+  display: flex;
+  gap: 2rem;
+}
+
+.link-style{
+  list-style:  none;
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.socials-container{
+  display: flex;
+  gap: .5rem;
+  padding-top: 1rem;
+}
+
+.socials-text{
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 600;
+}
