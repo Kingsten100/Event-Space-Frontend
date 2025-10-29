@@ -7,6 +7,9 @@ import { AuthProvider } from './context/AuthContext.tsx'
 
 import './components/Navbar/NavbarStyles.css'
 import './components/Footer/FooterStyles.css'
+import './components/Register/RegisterFormStyles.css'
+
+import './pages/AuthPageStyles.css'
 
 
 createRoot(document.getElementById('root')!).render(

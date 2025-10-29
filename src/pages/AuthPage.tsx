@@ -1,8 +1,9 @@
+import RegisterForm from "../components/Register/RegisterForm"
 
 const AuthPage = () => {
   return (
-    <div>
-      Auth Page
+    <div className="form-placement">
+      <RegisterForm />
     </div>
   )
 }

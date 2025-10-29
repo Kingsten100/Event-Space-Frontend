@@ -3,7 +3,8 @@
 export interface RegisterData { 
   name: string;
   email: string;
-  password: string
+  password: string;
+  repeatPassword: string;
 }
 
 export interface LoginData {
@@ -13,6 +14,7 @@ export interface LoginData {
 
 export interface AuthResponse {
   token: string;
+  message: string
   user: {
     _id: string;
     name: string;
