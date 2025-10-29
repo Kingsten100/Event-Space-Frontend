@@ -16,7 +16,7 @@ interface AuthConntextType {
   user: User | null,
   setUser: ( user: User | null ) => void
   loginUser: (email: string, password: string) => Promise<void>
-  registerUser: (name: string, email: string, password: string) => Promise<void>
+  registerUser: (name: string, email: string, password: string, repeatPassword: string) => Promise<void>
 
 }
 
@@ -31,16 +31,22 @@ export const AuthProvider = ({ children }: { children: ReactNode}) => {
   const [user, setUser] = useState<User | null>(null)
 
   const loginUser = async (email: string, password: string) => {
-    const data = await login({ email, password });
-    setUser({ ...data.user, token: data.token });
-    localStorage.setItem("token", data.token);
+    const data = await login({ email, password })
+    setUser({ ...data.user, token: data.token })
+    localStorage.setItem("token", data.token)
   };
 
   
-  const registerUser = async (name: string, email: string, password: string) => {
-    const data = await register({ name, email, password });
-    setUser({ ...data.user, token: data.token });
-    localStorage.setItem("token", data.token);
+  const registerUser = async (name: string, email: string, password: string, repeatPassword: string) => {
+
+    try {
+      const data = await register({ name, email, password, repeatPassword })
+      setUser({ ...data.user, token: data.token })
+      localStorage.setItem("token", data.token)
+    } catch (err: any) {
+      throw new Error(err.response?.data?.mesaage || 'Something went wrong') 
+    }
+
   };
 
   return (

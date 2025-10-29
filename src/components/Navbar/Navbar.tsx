@@ -1,7 +1,10 @@
 import React from 'react'
-import { NavLink } from 'react-router'
+import { Link, NavLink } from 'react-router'
 
 const Navbar = () => {
+
+  const token = localStorage.getItem('token')
+
   return (
     <div>
       <div className='container navbar-container'>
@@ -21,7 +24,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className='login-btn-container'>
-            <button className='login-btn'>Login</button>
+            <button className='login-btn'>{token ? <Link className='profile-link' to='/profile'>Profile</Link> : <Link className='profile-link' to='/login'>Login</Link>}</button>
           </div>
 
         </div>

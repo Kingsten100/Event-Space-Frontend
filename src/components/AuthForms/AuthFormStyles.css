@@ -80,3 +80,8 @@
   font-size: .8rem;
   color: red;
 }
+
+.auth-link{
+  text-decoration: none;
+  color: black;
+}

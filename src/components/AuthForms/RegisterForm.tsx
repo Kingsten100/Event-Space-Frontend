@@ -2,8 +2,12 @@ import React, { useState } from 'react'
 import type { FormData } from '../../types/FormData.ts'
 import { register } from '../../api/userService/RegisterUser.ts'
 import type { RegisterData } from '../../types/UserType.ts'
+import { Link, useNavigate } from 'react-router'
+import { useAuth } from '../../context/AuthContext.tsx'
 
 const RegisterForm = () => {
+
+  const { registerUser } = useAuth()
 
   const [formData, setFormData] = useState<RegisterData>({
     email: '',
@@ -15,6 +19,7 @@ const RegisterForm = () => {
   const [error, setError] = useState<Partial<RegisterData>>({})
   const [success, setSuccess] = useState(false)
   const [message, setMessage] = useState('')
+  const navigate = useNavigate()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target
@@ -50,11 +55,12 @@ const RegisterForm = () => {
     if(!validate) return
 
     try {
-      const res = await register(formData)
-      setMessage(res.message || 'User created successfully')
+      const res = await registerUser(formData.name, formData.email, formData.password, formData.repeatPassword)
+
+      navigate('/')
       
     } catch (err: any) {
-      setMessage(err.response?.data?.message || 'An error occurred')
+      setMessage(err.message)
     }
 
 
@@ -90,8 +96,11 @@ const RegisterForm = () => {
             </div>
             <div className='form-text'>
               <p>Already have an account? </p> 
-              <p className='underline'>Login in here</p>
+              <Link className='auth-link' to={'/login'}>
+                <p className='underline'>Login in here</p>
+              </Link>
             </div>
+            {message && <p className='form-error'>{message}</p>}
             <button className='submit-btn'>Submit</button>
           </form>
         </div>

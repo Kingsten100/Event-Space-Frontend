@@ -45,4 +45,16 @@
   border-radius: 5rem;
   font-weight: 600;
   font-size: 1rem;
+  cursor: pointer;
+}
+
+.login-btn:hover{
+  background-color: hsl(0, 100%, 69%);
+}
+
+.profile-link{
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  font-weight: 600;
 }

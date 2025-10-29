@@ -7,7 +7,7 @@ import { AuthProvider } from './context/AuthContext.tsx'
 
 import './components/Navbar/NavbarStyles.css'
 import './components/Footer/FooterStyles.css'
-import './components/Register/RegisterFormStyles.css'
+import './components/AuthForms/AuthFormStyles.css'
 
 import './pages/AuthPageStyles.css'
 
