@@ -1,6 +1,7 @@
-import { useContext, createContext, useState, type ReactNode } from "react"
+import { useContext, createContext, useState, type ReactNode, useEffect } from "react"
 import { login } from "../api/userService/LoginUser"
 import { register } from "../api/userService/RegisterUser"
+import { instance } from "../api/axiosInstance"
 
 
 
@@ -30,10 +31,38 @@ const AuthContext = createContext<AuthConntextType>({
 export const AuthProvider = ({ children }: { children: ReactNode}) => {
   const [user, setUser] = useState<User | null>(null)
 
+  useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  const fetchUser = async () => {
+    try {
+      const res = await instance.get("/auth/me", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      setUser({ ...res.data.user, token });
+    } catch (err) {
+      console.error("Failed to fetch user", err)
+      localStorage.removeItem("token")
+      setUser(null);
+    }
+  };
+
+  fetchUser();
+}, []);
+
+
   const loginUser = async (email: string, password: string) => {
-    const data = await login({ email, password })
-    setUser({ ...data.user, token: data.token })
-    localStorage.setItem("token", data.token)
+
+    try {
+      const data = await login({ email, password })
+      setUser({ ...data.user, token: data.token })
+      localStorage.setItem("token", data.token)
+      
+    } catch (err: any) {
+      throw new Error(err.response?.data?.message || 'Something went wrong')
+    }
+
   };
 
   
@@ -44,7 +73,7 @@ export const AuthProvider = ({ children }: { children: ReactNode}) => {
       setUser({ ...data.user, token: data.token })
       localStorage.setItem("token", data.token)
     } catch (err: any) {
-      throw new Error(err.response?.data?.mesaage || 'Something went wrong') 
+      throw new Error(err.response?.data?.message || 'Something went wrong') 
     }
 
   };

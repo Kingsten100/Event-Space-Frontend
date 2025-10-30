@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import type { FormData } from '../../types/FormData.ts'
-import { register } from '../../api/userService/RegisterUser.ts'
 import type { RegisterData } from '../../types/UserType.ts'
 import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../../context/AuthContext.tsx'

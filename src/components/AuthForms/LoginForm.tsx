@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import type { LoginData } from '../../types/UserType'
 import { Link, useNavigate } from 'react-router'
 import { login } from '../../api/userService/LoginUser'
+import { useAuth } from '../../context/AuthContext'
 
 const LoginForm = () => {
+
+  const { loginUser } = useAuth()
 
   const [formData, setFormData] = useState<LoginData>({
     email: '',
@@ -25,9 +28,8 @@ const LoginForm = () => {
   
   
       try {
-        const res = await login(formData)
-        setMessage(res.message || 'User created successfully')
-        navigate('/')
+        const res = await loginUser(formData.email, formData.password)
+          // navigate('/')
         
       } catch (err: any) {
         setMessage(err.response?.data?.message || 'An error occurred')

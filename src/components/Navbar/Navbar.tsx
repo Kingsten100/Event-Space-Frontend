@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router'
+import  { useAuth } from '../../context/AuthContext'
 
 const Navbar = () => {
+
+  const { user } = useAuth()
 
   const token = localStorage.getItem('token')
 
@@ -14,6 +17,8 @@ const Navbar = () => {
           
           </a>
         </div>
+        <p>{user?.email}</p>
+       
         <div className='navbar-btns'>
           <div >
             <ul className='navlinks-container'>
@@ -24,7 +29,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className='login-btn-container'>
-            <button className='login-btn'>{token ? <Link className='profile-link' to='/profile'>Profile</Link> : <Link className='profile-link' to='/login'>Login</Link>}</button>
+            <button className='login-btn'>{user ? <Link className='profile-link' to='/profile'>Profile</Link> : <Link className='profile-link' to='/login'>Login</Link>}</button>
           </div>
 
         </div>
