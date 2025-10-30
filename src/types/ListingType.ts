@@ -3,4 +3,11 @@ export interface Listing {
   title: string;
   description: string;
   price: number;
+  location: {
+    city: string;
+    region: string
+  };
+  images: string[];
+  capacity: number;
+  averageRating: number;
 }

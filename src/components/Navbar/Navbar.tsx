@@ -17,7 +17,7 @@ const Navbar = () => {
           
           </a>
         </div>
-        <p>{user?.email}</p>
+   
        
         <div className='navbar-btns'>
           <div >

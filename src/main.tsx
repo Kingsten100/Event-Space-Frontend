@@ -8,8 +8,10 @@ import { AuthProvider } from './context/AuthContext.tsx'
 import './components/Navbar/NavbarStyles.css'
 import './components/Footer/FooterStyles.css'
 import './components/AuthForms/AuthFormStyles.css'
+import './components/ListingCard/ListingCardStyles.css'
 
 import './pages/AuthPageStyles.css'
+import './pages/HomePageStyles.css'
 
 
 createRoot(document.getElementById('root')!).render(
