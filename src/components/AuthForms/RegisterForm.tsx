@@ -44,13 +44,13 @@ const RegisterForm = () => {
     }
 
     setError(newError)
-    return Object.keys(newError). length === 0
+    return Object.keys(newError).length === 0
   }
 
   const handlesubmit = async(e: React.FormEvent) => {
     e.preventDefault()
 
-    if(!validate) return
+    if(!validate()) return
 
     try {
       const res = await registerUser(formData.name, formData.email, formData.password, formData.repeatPassword)

@@ -8,22 +8,17 @@ import { FaStar } from "react-icons/fa";
 import { Link } from 'react-router';
 
 
-
-
-
 interface CardProps {
   listing: Listing
 }
 
 const ListingCard = ({ listing }: CardProps) => {
-  console.log(listing.images)
   return (
     <div className='listing-card'>
       <div className='card-img-container'>
         <Link to={`/listing/${listing._id}`}>
-          <img className='card-img' src={listing.images[0]} alt="" />
+          <img className='card-img' src={`${listing.images[0]}?w=400&q=70&auto=format`} alt="" loading='lazy'/>
         </Link>
-        
         
       </div>
       <div className='card-style'>

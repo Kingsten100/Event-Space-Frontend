@@ -29,7 +29,7 @@ const LoginForm = () => {
   
       try {
         const res = await loginUser(formData.email, formData.password)
-          // navigate('/')
+          navigate('/')
         
       } catch (err: any) {
         setMessage(err.response?.data?.message || 'An error occurred')

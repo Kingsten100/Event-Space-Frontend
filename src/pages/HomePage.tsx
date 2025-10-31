@@ -1,28 +1,41 @@
 import { IoMdSearch } from "react-icons/io"
 import ListingCard from "../components/ListingCard/ListingCard"
 import { useEffect, useState } from "react"
-import type { Listing } from "../types/ListingType";
-import { fetchListings } from "../api/listingService/GetListings";
+import type { Listing } from "../types/ListingType"
+import { getListingsByCategory } from "../api/listingService/GetListingsByCategory"
 
 
 const HomePage = () => {
 
-  const [listings, setListings] = useState<Listing[]>([])
+  const [partyVenues, setPartyVenues] = useState<Listing[]>([])
+  const [banquetsVenues, setBanquetsVenues] = useState<Listing[]>([])
+  const [conferenceVenues, setConferenceVenues] = useState<Listing[]>([])
+
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const getListings = async () => {
       try {
-        const res = await fetchListings()
-        setListings(res)
+        const [partyRes, banquetsRes, conferenceRes] = await Promise.all([
+          getListingsByCategory('party'),
+          getListingsByCategory('banquet hall'),
+          getListingsByCategory('conference')
+        ])
+        setPartyVenues(partyRes) 
+        setBanquetsVenues(banquetsRes)
+        setConferenceVenues(conferenceRes)
       } catch (err) {
         console.log(err)
-      } finally {
+      } finally { 
         setLoading(false)
       }
     }
     getListings()
   }, [])
+
+  if(loading){
+    return <p>Loading...</p>
+  }
 
   return (
     <>
@@ -46,12 +59,47 @@ const HomePage = () => {
         </div>
       </div>
     
-      <div className="venues-container container">
-        {
-          listings.map((l) => (
-            <ListingCard key={l._id} listing={l}/>
-          ))
-        }
+      <div className="container party-container">
+        <div>
+          <h3 className="venue-title">Party</h3>
+        </div>
+        <div className="venues-container">
+          {
+            partyVenues.map((p) => (
+              <ListingCard key={p._id} listing={p}/>
+            ))
+          }
+
+        </div>
+        
+      </div>
+
+      <div className="party-container container">
+        <div>
+          <h3 className="venue-title">Banquets</h3>
+        </div>
+        <div className="venues-container">
+          { 
+            banquetsVenues.map((b) => (
+              <ListingCard key={b._id} listing={b}/>
+            ))
+          }
+        </div>
+        
+      </div>
+
+      <div className="party-container container">
+        <div>
+          <h3 className="venue-title">Conference</h3>
+        </div>
+        <div className="venues-container">
+          {  
+            conferenceVenues.map((p) => (
+              <ListingCard key={p._id} listing={p}/>
+            ))
+          }
+
+        </div>
         
       </div>
     </>
