@@ -65,8 +65,8 @@ const DetailPage = () => {
                 <p><b>Location:</b> {listing.location.city}</p>
                 <p><b>Address:</b> {listing.address}</p>
                 <p><b>Price:</b> ${listing.price} / day</p>
-                <p className="align-text"><b>Alcohol:</b> {listing.rules.alcoholAllowed ? <p>Allowed</p> : <p>Not allowed</p>}</p>
-                <p className="align-text"><b>Pets:</b> {listing.rules.petsAllowed ? <p>Allowed</p> : <p>Not allowed</p>}</p>
+                {listing.rules.alcoholAllowed ? <p className="align-text"><b>Alcohol: </b>Allowed</p> : <p className="align-text"><b>Alcohol: </b>Not allowed</p>}
+                {listing.rules.petsAllowed ? <p className="align-text"><b>Pets: </b>Allowed</p> : <p className="align-text"><b>Pets: </b>Not allowed</p>}
                 
               </div>
             </div>
@@ -89,9 +89,9 @@ const DetailPage = () => {
         </div>
         <div className="calendar-section">
           <div className="calendar">
-            <BookingCalendar />
+            <BookingCalendar price={listing.price}/>
           </div>
-          <button className="book-btn">Book</button>
+          
         </div>
       </div>
       

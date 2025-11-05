@@ -4,40 +4,72 @@ import React from "react"
 import { type DateRange } from "react-day-picker"
 import { Button } from "../ui/button"
 import { CalendarIcon } from "lucide-react"
-import { format } from "date-fns"
+import { differenceInCalendarDays, format, getDate } from "date-fns"
 import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover"
+import { useAuth } from "@/context/AuthContext"
+import { useNavigate } from "react-router"
+
+interface BookingCalendarProps {
+  price: number;
+}
 
 
 
-const BookingCalendar = () => {
+const BookingCalendar = ({ price }: BookingCalendarProps ) => {
   const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
-    from: new Date(2025, 5, 12),
-    to: new Date(2025, 6, 15),
+    from: new Date(),
+    to: new Date(),
   })
 
-  return (
-    <div className="flex flex-col items-center gap-4 p-6">
-      <div className="text-lg font-medium">
-        {dateRange?.from && dateRange?.to ? (
-          <>
-            
-            <span className="font-semibold">
-              {format(dateRange.from, "dd MMM yyyy")} – {format(dateRange.to, "dd MMM yyyy")}
-            </span>
-          </>
-        ) : (
-          "Choose a date"
-        )}
-      </div>
+  const days = dateRange?.from && dateRange.to ? differenceInCalendarDays(dateRange.to, dateRange.from) + 1 : 0
+  const { user } = useAuth()
+  const navigate = useNavigate()
 
-      <Calendar
-        initialFocus
-        mode="range"
-        selected={dateRange}
-        onSelect={setDateRange}
-        numberOfMonths={1}
-        className="rounded-md border border-none w-[400px] h-[500px] text-lg p-2 border-r-2 overflow-hidden"
-      />
+  const handleSubmit = () => {
+    if(!user) {
+      navigate('/login')
+    }
+
+    console.log('Hello', dateRange)
+  }
+
+  return (
+    <div>
+
+      <div className="flex flex-col items-center gap-4 p-6">
+        <div className="text-lg font-medium">
+          {dateRange?.from && dateRange?.to ? (
+            <>
+              
+              <span className="font-semibold">
+                {format(dateRange.from, "dd MMM yyyy")} – {format(dateRange.to, "dd MMM yyyy")}
+              </span>
+            </>
+          ) : (
+            "Choose a date"
+          )}
+        </div>
+
+        <Calendar
+          initialFocus
+          mode="range"
+          selected={dateRange}
+          onSelect={setDateRange}
+          numberOfMonths={1}
+          className="rounded-md border border-none w-[400px] h-[430px] text-lg p-2 border-r-2 overflow-hidden"
+        />
+      </div>
+        <div className="flex flex-col gap-1 pt-1">
+          <div>
+            <b>Days: </b> {days}
+          </div>
+          <div className="pb-3">
+            <b>Total: </b>${days * price}
+          </div>
+        </div>
+        <div className="flex justify-center ">
+          <button onClick={handleSubmit} className="book-btn">Book</button>
+        </div>
     </div>
   );
 }
