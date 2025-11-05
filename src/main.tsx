@@ -12,6 +12,7 @@ import './components/ListingCard/ListingCardStyles.css'
 
 import './pages/AuthPageStyles.css'
 import './pages/HomePageStyles.css'
+import './pages/DetailPageStyles.css'
 
 
 createRoot(document.getElementById('root')!).render(

@@ -10,4 +10,10 @@ export interface Listing {
   images: string[];
   capacity: number;
   averageRating: number;
+  amenities: string[];
+  rules: {
+    alcoholAllowed: Boolean,
+    petsAllowed: Boolean
+  };
+  address: String;
 }
