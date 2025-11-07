@@ -1,9 +1,10 @@
-export interface Booking {
-  _id: string;
-  listingId: string;
-  userId: string;
-  startDate: string;
-  endDate: string;
-  totalPrice: number;
+export interface BookingData {
+  _id?: String;
+  listingId?: String;
+  userId?: String;
+  startDate?: Date;
+  endDate?: Date;
+  totalPrice?: number;
+  days?: number;
 }
 

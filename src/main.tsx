@@ -13,14 +13,18 @@ import './components/ListingCard/ListingCardStyles.css'
 import './pages/AuthPageStyles.css'
 import './pages/HomePageStyles.css'
 import './pages/DetailPageStyles.css'
+import './pages/BookingPageStyles.css'
+import { BookingProvider } from './context/BookingContext.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <BookingProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </BookingProvider>
     </AuthProvider>
   </StrictMode>,
 )

@@ -1,21 +1,19 @@
 import { Calendar } from "@/components/ui/calendar"
-import { cn } from "@/lib/utils"
 import React from "react"
 import { type DateRange } from "react-day-picker"
-import { Button } from "../ui/button"
-import { CalendarIcon } from "lucide-react"
-import { differenceInCalendarDays, format, getDate } from "date-fns"
-import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover"
+import { differenceInCalendarDays, format } from "date-fns"
 import { useAuth } from "@/context/AuthContext"
 import { useNavigate } from "react-router"
+import { useBooking } from "@/context/BookingContext"
 
 interface BookingCalendarProps {
   price: number;
+  listingId: string;
 }
 
 
 
-const BookingCalendar = ({ price }: BookingCalendarProps ) => {
+const BookingCalendar = ({ price, listingId }: BookingCalendarProps ) => {
   const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
     from: new Date(),
     to: new Date(),
@@ -23,14 +21,27 @@ const BookingCalendar = ({ price }: BookingCalendarProps ) => {
 
   const days = dateRange?.from && dateRange.to ? differenceInCalendarDays(dateRange.to, dateRange.from) + 1 : 0
   const { user } = useAuth()
+  const { createBooking } = useBooking()
   const navigate = useNavigate()
+  
 
   const handleSubmit = () => {
     if(!user) {
-      navigate('/login')
+      return navigate('/login')
     }
 
-    console.log('Hello', dateRange)
+
+    createBooking({
+      listingId: listingId,
+      userId: user?._id,
+      startDate: dateRange?.from,
+      endDate: dateRange?.to,
+      days: days,
+      totalPrice: days * price
+      
+    })
+
+    navigate(`/${listingId}/booking`)
   }
 
   return (

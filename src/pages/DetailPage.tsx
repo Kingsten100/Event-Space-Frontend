@@ -89,7 +89,7 @@ const DetailPage = () => {
         </div>
         <div className="calendar-section">
           <div className="calendar">
-            <BookingCalendar price={listing.price}/>
+            <BookingCalendar price={listing.price} listingId={listing._id}/>
           </div>
           
         </div>
