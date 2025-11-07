@@ -1,15 +1,20 @@
 import { fetchListingById } from "@/api/listingService/GetLisitng"
 import { useBooking } from "@/context/BookingContext"
 import type { Listing } from "@/types/ListingType"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useParams } from "react-router"
 
 import { MdArrowRightAlt } from "react-icons/md";
+import { useAuth } from "@/context/AuthContext"
+import { createBooking } from "@/api/bookingService/createBooking"
 
 const BookingPage = () => {
 
   const { booking } = useBooking()
   const { id } = useParams< {id: string}>()
+  const { user } = useAuth()
+
+  const token = localStorage.getItem('token')
 
   const [listing, setListing] = useState<Listing>()
   const [loading, setLoading] = useState(true)
@@ -38,6 +43,23 @@ const BookingPage = () => {
         return null
       }
 
+      const handlePayment = async (e: React.FormEvent) => {
+        e.preventDefault()
+
+        if(!user){
+          console.log('No user found', user)
+          return null
+        }
+
+        try {
+          const res = await createBooking(booking)
+        } catch (err: any) {
+          console.log('Something went wrong')
+        }
+
+
+      }
+
 
   return (
     <div className="container">
@@ -49,7 +71,7 @@ const BookingPage = () => {
 
         <div>
           <div className="payment-container">
-            <form className="flex  flex-col gap-5 form-constraint justify-center">
+            <form onSubmit={handlePayment} className="flex  flex-col gap-5 form-constraint justify-center">
               <h3 className="font-bold text-2xl">Payment</h3>
               <div className="flex flex-col gap-2">
                 <label htmlFor="name">Name on card</label>

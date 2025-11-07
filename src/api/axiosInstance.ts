@@ -5,4 +5,13 @@ export const instance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-});
+  withCredentials: true
+})
+
+instance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token") // eller från ditt auth-context
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
