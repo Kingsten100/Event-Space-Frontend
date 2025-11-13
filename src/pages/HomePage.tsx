@@ -3,6 +3,8 @@ import ListingCard from "../components/ListingCard/ListingCard"
 import { useEffect, useState } from "react"
 import type { Listing } from "../types/ListingType"
 import { getListingsByCategory } from "../api/listingService/GetListingsByCategory"
+import { searchListings } from "@/api/listingService/SearchListings"
+import { useNavigate } from "react-router"
 
 
 const HomePage = () => {
@@ -12,6 +14,27 @@ const HomePage = () => {
   const [conferenceVenues, setConferenceVenues] = useState<Listing[]>([])
 
   const [loading, setLoading] = useState(true)
+
+  const [query, setQuery] = useState("")
+  const [results, setResults] = useState([])
+
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if(!query.trim()) return
+
+    navigate(`/search?query=${encodeURIComponent(query)}`)
+
+    try {
+      console.log(query)
+      const data = await searchListings(query)
+      setResults(data)
+    } catch (error) {
+      console.error("Sökning misslyckades:", error)
+    }
+  }
 
   useEffect(() => {
     const getListings = async () => {
@@ -37,6 +60,9 @@ const HomePage = () => {
     return <p>Loading...</p>
   }
 
+  
+
+
   return (
     <>
       <div className="container hero-margin">
@@ -47,8 +73,8 @@ const HomePage = () => {
               <p>To find a venue should bring joy, not stress</p>
             </div>
             <div>
-              <form className="search-form">
-                <input className="searchbar" type="text" placeholder="Search for a city or area..."/>
+              <form onSubmit={handleSubmit} className="search-form">
+                <input className="searchbar" type="text" placeholder="Search for a city or area..." value={query} onChange={(e) => setQuery(e.target.value)}/>
                 <button className="search-btn"><IoMdSearch /></button>
               </form>
             </div>

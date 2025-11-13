@@ -8,6 +8,7 @@ import ListingsPage from './pages/ListingsPage'
 import RootLayout from './Layouts/RootLayout'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
+import SearchPage from './pages/SearchPage'
 
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route path='/listings' element={<ListingsPage />}/>
         <Route path='/listing/:id' element={<DetailPage />}/>
         <Route path='/profile' element={<ProfilePage />}/>
+        <Route path='/search' element={<SearchPage />}/>
       </Route>
      </Routes>
     </>
