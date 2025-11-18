@@ -1,0 +1,20 @@
+.search-page{
+  
+  .filter-container{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 3rem;
+  }
+
+  .filter-btn{
+    background-color: #FF6B6B;
+    padding: .5rem 1rem;
+    border-radius: 5rem;
+    cursor: pointer;
+  }
+
+  .filter-btn:hover{
+    background-color: hsl(0, 100%, 69%);
+  }
+}

@@ -1,0 +1,110 @@
+.filter-background{
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.373);
+  z-index: 100;
+  inset: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .filter-container-inside{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 1rem;
+  width: 500px;
+  padding: 1rem;
+  max-height: 600px;
+  overflow-y: auto;
+  
+  
+
+  .divider{
+    width: 100%;
+    border: 1px solid lightgray;
+    margin-block: 1rem;
+  }
+
+  .check-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    margin-left: 1rem;
+    margin-top: 1rem;
+  }
+
+  .filter-check{
+    width: 100%;
+  }
+
+  .margin{
+    margin-top: .3rem;
+  }
+
+  .apply-btn{
+    padding: .4rem 3rem;
+    background-color: #FF6B6B;
+    font-weight: 600;
+    border-radius: .6rem;
+    cursor: pointer;
+  }
+
+  .apply-btn:hover{
+    background-color: hsl(0, 100%, 69%);
+  }
+
+  .btns-flex{
+    display: flex;
+    gap: 2rem;
+    padding-top: 2em;
+    justify-content: center;
+  }
+
+  .reset-btn{
+    cursor: pointer;
+  }
+
+  .range-container{
+    width: 100%;
+  }
+  .range-track{
+    width: 100%;
+    height: .5rem;
+    background-color: gray;
+    border-radius: 1rem;
+    position: relative;
+  }
+
+  .range{
+    position: relative;
+    width: 100%;
+    height: .5rem;
+  }
+
+  .slidern{
+    position: absolute;
+    height: .5rem;
+    background-color: black;
+    border-radius: 1rem;
+    z-index: 1;
+  }
+
+  .thumb{
+    height: 1.3rem;
+    width: 1.3rem;
+    background-color: white;
+    border-radius: 10rem;
+    border: 1px solid black;
+    position: relative;
+    z-index: 10;
+  }
+
+  .price-index{
+    display: flex;
+    justify-content: space-between;
+    font-size: .8rem;
+    margin-top: 1rem;
+  }
+}
+}
+

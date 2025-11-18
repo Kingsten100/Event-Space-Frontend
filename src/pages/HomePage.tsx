@@ -26,14 +26,6 @@ const HomePage = () => {
     if(!query.trim()) return
 
     navigate(`/search?query=${encodeURIComponent(query)}`)
-
-    try {
-      console.log(query)
-      const data = await searchListings(query)
-      setResults(data)
-    } catch (error) {
-      console.error("Sökning misslyckades:", error)
-    }
   }
 
   useEffect(() => {
