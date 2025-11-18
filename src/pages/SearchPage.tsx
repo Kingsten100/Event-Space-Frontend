@@ -15,18 +15,24 @@ const SearchPage = () => {
   const [categories, setCategories] = useState<string[]>([])
   const [amenities, setAmenities] = useState<string[]>([])
   const [openFilter, setOpenFilter] = useState(false)
+  const [shouldFilter, setShouldFilter] = useState(false)
+
 
 
   const location = useLocation()
   const params = new URLSearchParams(location.search)
   const query = params.get("query") || ""
 
+  const handleApplyFilters = (newFilters: Filter) => {
+  setFilters(newFilters)
+  setShouldFilter(true)   // detta triggar filtrering
+}
+
+
     const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     if(!search.trim()) return
-
-    
 
     try {
       console.log(search)
@@ -36,6 +42,19 @@ const SearchPage = () => {
       console.error("Sökning misslyckades:", error)
     }
   }
+
+   useEffect(() => {
+    if(!query) return
+   
+    setSearch(query)
+
+    setLoading(true)
+    searchListings(query)
+      .then((data) => {
+        setResults(data)
+      })
+      .finally(() => setLoading(false))
+  }, [query]) 
 
   
   useEffect(() => {
@@ -49,34 +68,30 @@ const SearchPage = () => {
   
   const [filters, setFilters] = useState<Filter>({
     minPrice: 0,
-    maxPrice: 10000,
+    maxPrice: 15000,
     capacity: 1,
     categories: [],
     amenities: []
   })
 
-  useEffect(() => {
-    setLoading(true)
-    searchListings( search, filters)
-      .then((data) => setResults(data))
-      .finally(() => setLoading(false))
-  }, [filters])
 
   useEffect(() => {
-    if(!query) return
-   
+  if (!shouldFilter) return
+  if (!search.trim()) return
 
-    setLoading(true)
-    searchListings(query)
-      .then((data) => {
-        setResults(data)})
-      
-      .finally(() => setLoading(false))
-  }, [query]) 
+  setLoading(true)
+  searchListings(search, filters)
+    .then((data) => setResults(data))
+    .finally(() => setLoading(false))
+
+  setShouldFilter(false)
+}, [shouldFilter])
+
+ 
 
   return (
     <div className='container search-page'>
-      {loading && <p>Loading...</p>}
+      
       <div>
         <div className='filter-container'>
           <div>
@@ -87,7 +102,7 @@ const SearchPage = () => {
           </div>
           <div>
             <button onClick={() => setOpenFilter(true)} className='filter-btn'>Filter</button>
-            <AdvancedFilter open={openFilter} onClose={() => setOpenFilter(false)} filters={filters} setFilters={setFilters} categories={categories} amenities={amenities} onApply={(appliedFilters) => setFilters(appliedFilters)}/> 
+            <AdvancedFilter open={openFilter} onClose={() => setOpenFilter(false)} filters={filters} setFilters={setFilters} categories={categories} amenities={amenities} onApply={handleApplyFilters}/> 
           </div>
         </div>
       </div>

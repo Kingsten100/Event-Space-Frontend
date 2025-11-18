@@ -1,5 +1,4 @@
 import type { Filter } from "@/types/FilterType"
-import { Divide } from "lucide-react"
 import { Range } from 'react-range'
 
 interface AdvancedFilterProps {
@@ -80,8 +79,6 @@ const AdvancedFilter = ({open, onClose, filters, setFilters, categories, ameniti
             className="range-track"
             style={{...props.style}}
           >
-            
-              {/* Active range highlight */}
               <div
                 className="slidern"
                 style={{
