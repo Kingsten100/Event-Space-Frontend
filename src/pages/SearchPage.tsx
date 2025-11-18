@@ -23,10 +23,33 @@ const SearchPage = () => {
   const params = new URLSearchParams(location.search)
   const query = params.get("query") || ""
 
+  const [filters, setFilters] = useState<Filter>({
+    minPrice: 0,
+    maxPrice: 15000,
+    capacity: 1,
+    categories: [],
+    amenities: []
+  })
+
+  
+
+  useEffect(() => {
+    if(!shouldFilter) return
+    if(!search.trim()) return
+
+    setLoading(true)
+    searchListings(search, filters)
+      .then(data => setResults(data))
+      .finally(() => setLoading(false))
+
+    setShouldFilter(false)
+  }, [shouldFilter, filters])
+
+
   const handleApplyFilters = (newFilters: Filter) => {
-  setFilters(newFilters)
-  setShouldFilter(true)   // detta triggar filtrering
-}
+    setFilters(newFilters)
+    setShouldFilter(true)  
+  }
 
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -66,26 +89,20 @@ const SearchPage = () => {
 
   
   
-  const [filters, setFilters] = useState<Filter>({
-    minPrice: 0,
-    maxPrice: 15000,
-    capacity: 1,
-    categories: [],
-    amenities: []
-  })
+  
 
 
-  useEffect(() => {
-  if (!shouldFilter) return
-  if (!search.trim()) return
+//   useEffect(() => {
+//   if (!shouldFilter) return
+//   if (!search.trim()) return
 
-  setLoading(true)
-  searchListings(search, filters)
-    .then((data) => setResults(data))
-    .finally(() => setLoading(false))
+//   setLoading(true)
+//   searchListings(search, filters)
+//     .then((data) => setResults(data))
+//     .finally(() => setLoading(false))
 
-  setShouldFilter(false)
-}, [shouldFilter])
+//   setShouldFilter(false)
+// }, [shouldFilter])
 
  
 
@@ -102,7 +119,7 @@ const SearchPage = () => {
           </div>
           <div>
             <button onClick={() => setOpenFilter(true)} className='filter-btn'>Filter</button>
-            <AdvancedFilter open={openFilter} onClose={() => setOpenFilter(false)} filters={filters} setFilters={setFilters} categories={categories} amenities={amenities} onApply={handleApplyFilters}/> 
+            <AdvancedFilter open={openFilter} onClose={() => setOpenFilter(false)} initialFilters={filters} categories={categories} amenities={amenities} onApply={handleApplyFilters}/> 
           </div>
         </div>
       </div>

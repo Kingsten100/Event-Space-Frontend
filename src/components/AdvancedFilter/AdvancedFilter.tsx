@@ -1,34 +1,41 @@
 import type { Filter } from "@/types/FilterType"
+import { useEffect, useState } from "react"
 import { Range } from 'react-range'
 
 interface AdvancedFilterProps {
   open: boolean
   onClose: () => void
   onApply: (filters: Filter) => void
-  filters: Filter
-  setFilters: React.Dispatch<React.SetStateAction<Filter>>
+  initialFilters: Filter
   categories: string[]
   amenities: string[]
 }
 
-const AdvancedFilter = ({open, onClose, filters, setFilters, categories, amenities, onApply}: AdvancedFilterProps) => {
+const AdvancedFilter = ({open, onClose, initialFilters, categories, amenities, onApply}: AdvancedFilterProps) => {
 
   const price_Min = 0
   const price_Max = 15000
+  const [localFilters, setLocalFilters] = useState<Filter>(initialFilters);
+  
+  useEffect(() => {
+  if (open) setLocalFilters(initialFilters)
+}, [open, initialFilters])
+
 
   if(!open) return null
 
   const toggleCategory = (cat: string) => {
-    setFilters(prev => ({
-      ...prev, 
-      categories: prev.categories.includes(cat)
+  setLocalFilters(prev => ({
+    ...prev,
+    categories: prev.categories.includes(cat)
       ? prev.categories.filter(c => c !== cat)
       : [...prev.categories, cat]
-    }))
-  }
+  }))
+}
+
 
   const toggleAmenity = (amenity: string) => {
-    setFilters(prev => ({
+    setLocalFilters(prev => ({
       ...prev,
       amenities: prev.amenities.includes(amenity)
       ? prev.amenities.filter(a => a !== amenity)
@@ -37,12 +44,12 @@ const AdvancedFilter = ({open, onClose, filters, setFilters, categories, ameniti
   }
 
   const handleApply = () => {
-    onApply(filters)
+    onApply(localFilters)
     onClose()
   }
 
   const handleReset = () => {
-    setFilters({
+    setLocalFilters({
       minPrice: 0,
       maxPrice: 10000,
       capacity: 1,
@@ -65,10 +72,10 @@ const AdvancedFilter = ({open, onClose, filters, setFilters, categories, ameniti
         step={100}
         min={price_Min}
         max={price_Max}
-        values={[filters.minPrice, filters.maxPrice]}
+        values={[localFilters.minPrice, localFilters.maxPrice]}
         onChange={(values) =>
-          setFilters({
-            ...filters,
+          setLocalFilters({
+            ...localFilters,
             minPrice: values[0],
             maxPrice: values[1],
           })
@@ -82,9 +89,9 @@ const AdvancedFilter = ({open, onClose, filters, setFilters, categories, ameniti
               <div
                 className="slidern"
                 style={{
-                  left: `${(filters.minPrice / price_Max) * 100}%`,
+                  left: `${(localFilters.minPrice / price_Max) * 100}%`,
                   width: `${
-                    ((filters.maxPrice - filters.minPrice) / price_Max) * 100
+                    ((localFilters.maxPrice - localFilters.minPrice) / price_Max) * 100
                   }%`,
                 }}
               />
@@ -102,8 +109,8 @@ const AdvancedFilter = ({open, onClose, filters, setFilters, categories, ameniti
         
       />
       <div className="price-index">
-        <span>{filters.minPrice} kr</span>
-        <span>{filters.maxPrice} kr</span>
+        <span>{localFilters.minPrice} kr</span>
+        <span>{localFilters.maxPrice} kr</span>
       </div>
       </div>
   
@@ -113,9 +120,9 @@ const AdvancedFilter = ({open, onClose, filters, setFilters, categories, ameniti
           <input
             type="number"
             className="w-full border p-2 rounded"
-            value={filters.capacity}
+            value={localFilters.capacity}
             onChange={(e) =>
-              setFilters({ ...filters, capacity: +e.target.value })
+              setLocalFilters({ ...localFilters, capacity: +e.target.value })
             }
           />
         </div>
@@ -130,7 +137,7 @@ const AdvancedFilter = ({open, onClose, filters, setFilters, categories, ameniti
               <label key={cat} className="flex flex-wrap gap-2 margin">
                 <input
                   type="checkbox"
-                  checked={filters.categories.includes(cat)}
+                  checked={localFilters.categories.includes(cat)}
                   onChange={() => toggleCategory(cat)}
                 />
                 {cat}
@@ -147,7 +154,7 @@ const AdvancedFilter = ({open, onClose, filters, setFilters, categories, ameniti
               <label key={a} className="flex gap-2 margin">
                 <input
                   type="checkbox"
-                  checked={filters.amenities.includes(a)}
+                  checked={localFilters.amenities.includes(a)}
                   onChange={() => toggleAmenity(a)}
                 />
                 {a}
