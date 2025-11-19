@@ -3,8 +3,10 @@ import RegisterForm from "../components/AuthForms/RegisterForm"
 
 const LoginPage = () => {
   return (
-    <div className="form-placement">
-      <LoginForm />
+    <div className=" container">
+      <div className="">
+        <LoginForm />
+      </div>
 
     </div>
   )

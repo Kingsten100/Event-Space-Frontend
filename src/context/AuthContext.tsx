@@ -18,6 +18,7 @@ interface AuthConntextType {
   setUser: ( user: User | null ) => void
   loginUser: (email: string, password: string) => Promise<void>
   registerUser: (name: string, email: string, password: string, repeatPassword: string) => Promise<void>
+  logout: () => void;
 
 }
 
@@ -25,7 +26,8 @@ const AuthContext = createContext<AuthConntextType>({
   user: null,
   setUser: () => {},
   loginUser: async () => {},
-  registerUser: async () => {}
+  registerUser: async () => {},
+  logout: () => {}
 })
 
 export const AuthProvider = ({ children }: { children: ReactNode}) => {
@@ -76,10 +78,15 @@ export const AuthProvider = ({ children }: { children: ReactNode}) => {
       throw new Error(err.response?.data?.message || 'Something went wrong') 
     }
 
-  };
+  }
+
+  const logout = () => {
+    localStorage.removeItem('token')
+    setUser(null)
+  }
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loginUser, registerUser }}>
+    <AuthContext.Provider value={{ user, setUser, loginUser, registerUser, logout }}>
       { children }
     </AuthContext.Provider>
   )

@@ -87,24 +87,6 @@ const SearchPage = () => {
     })
   }, [])
 
-  
-  
-  
-
-
-//   useEffect(() => {
-//   if (!shouldFilter) return
-//   if (!search.trim()) return
-
-//   setLoading(true)
-//   searchListings(search, filters)
-//     .then((data) => setResults(data))
-//     .finally(() => setLoading(false))
-
-//   setShouldFilter(false)
-// }, [shouldFilter])
-
- 
 
   return (
     <div className='container search-page'>

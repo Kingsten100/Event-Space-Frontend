@@ -1,0 +1,90 @@
+.profile-page{
+
+  margin-top: 3rem;
+
+  .name-text{
+    font-size: 1.5rem;
+  }
+
+  .info-card{
+    border: 1px solid lightgray;
+    max-width: 500px;
+    border-radius: .7rem;
+   
+    padding: 1rem;
+    box-shadow: 0px 5px 10px 0px lightgray;
+    margin-block: 3rem ;
+    
+  }
+
+  .lay{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 1rem;
+  }
+
+  .info-flex{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .info-container{
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+  }
+
+  .label{
+    font-size: .9rem;
+  }
+
+  .info-box{
+    border: none;
+    background-color: #E6E6E6;
+    height: 2rem;
+    border-radius: .5rem;
+    padding-left: 1rem;
+    font-size: 1rem;
+    color: rgb(96, 96, 96);
+  }
+
+  .text{
+    transform: translateY(15%);
+  }
+
+  .btn-flex{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .listing-btn{
+    border: none;
+    width: 200px;
+    padding-block: .7rem;
+    border-radius: .5rem;
+    background-color: #FF6B6B;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .listing-btn:hover{
+     background-color: hsl(0, 100%, 68%);
+  }
+
+  .logout-btn{
+    border: 2px solid #FF6B6B;
+    width: 200px;
+    padding-block: .7rem;
+    border-radius: .5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .logout-btn:hover{
+     background-color: hsl(0, 100%, 68%);
+  }
+}

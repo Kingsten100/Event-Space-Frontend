@@ -39,7 +39,7 @@ const LoginForm = () => {
     }
 
   return (
-    <div className='container'>
+    <div className='form-placement'>
       <div className='auth-card'>
         <div className='auth-title'>
           <p>Welcome to <b>EventSpace</b><br/> please login or register</p>

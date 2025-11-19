@@ -51,7 +51,7 @@ const AdvancedFilter = ({open, onClose, initialFilters, categories, amenities, o
   const handleReset = () => {
     setLocalFilters({
       minPrice: 0,
-      maxPrice: 10000,
+      maxPrice: 15000,
       capacity: 1,
       categories: [],
       amenities: []

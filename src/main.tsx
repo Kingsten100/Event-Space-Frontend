@@ -17,6 +17,7 @@ import './pages/HomePageStyles.css'
 import './pages/DetailPageStyles.css'
 import './pages/BookingPageStyles.css'
 import './pages/SearchPageStyles.css'
+import './pages/ProfilePageStyles.css'
 
 
 createRoot(document.getElementById('root')!).render(

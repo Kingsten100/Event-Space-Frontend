@@ -65,7 +65,7 @@ const RegisterForm = () => {
   }
 
   return (
-    <div className='container'>
+    <div className=''>
       <div className='auth-card'>
         <div className='auth-title'>
           <p>Welcome to <b>EventSpace</b><br/> please login or register</p>
