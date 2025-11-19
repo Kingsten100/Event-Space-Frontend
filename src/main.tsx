@@ -11,6 +11,7 @@ import './components/Footer/FooterStyles.css'
 import './components/AuthForms/AuthFormStyles.css'
 import './components/ListingCard/ListingCardStyles.css'
 import './components/AdvancedFilter/AdvancedFilterStyles.css'
+import './components/BookedListingCard/BookedCardStyles.css'
 
 import './pages/AuthPageStyles.css'
 import './pages/HomePageStyles.css'
@@ -18,6 +19,7 @@ import './pages/DetailPageStyles.css'
 import './pages/BookingPageStyles.css'
 import './pages/SearchPageStyles.css'
 import './pages/ProfilePageStyles.css'
+import './pages/MyBookingsPageStyles.css'
 
 
 createRoot(document.getElementById('root')!).render(

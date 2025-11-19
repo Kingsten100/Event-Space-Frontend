@@ -1,0 +1,25 @@
+.warning-text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  
+  font-size: 1.5rem;
+  font-weight:600 ;
+
+}
+
+.bookings-wrapper{
+
+  margin-block: 3rem;
+
+  .welcome-text{
+    font-size: 1.5rem;
+  }
+
+  .booking-card-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 3rem;
+  }
+}

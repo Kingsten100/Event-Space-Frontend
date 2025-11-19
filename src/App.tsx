@@ -9,6 +9,7 @@ import RootLayout from './Layouts/RootLayout'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import SearchPage from './pages/SearchPage'
+import MyBookingsPage from './pages/MyBookingsPage'
 
 
 
@@ -27,6 +28,7 @@ function App() {
         <Route path='/listing/:id' element={<DetailPage />}/>
         <Route path='/profile' element={<ProfilePage />}/>
         <Route path='/search' element={<SearchPage />}/>
+        <Route path='/mybookings' element={<MyBookingsPage />}/>
       </Route>
      </Routes>
     </>

@@ -23,9 +23,9 @@ const Navbar = () => {
           <div >
             <ul className='navlinks-container'>
               <li className='navlink-item'><NavLink className='navlink-style' to={'/'}>Home</NavLink></li>
-              <li className='navlink-item'><NavLink className='navlink-style' to={'/'}>Venues</NavLink></li>
+              <li className='navlink-item'><NavLink className='navlink-style' to={'/search'}>Venues</NavLink></li>
               <li className='navlink-item'><NavLink className='navlink-style' to={'/about'}>About Us</NavLink></li>
-              <li className='navlink-item'><NavLink className='navlink-style' to={'/mybooking'}>My Booking</NavLink></li>
+              <li className='navlink-item'><NavLink className='navlink-style' to={'/mybookings'}>My Bookings</NavLink></li>
             </ul>
           </div>
           <div className='login-btn-container'>

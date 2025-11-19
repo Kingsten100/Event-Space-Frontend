@@ -1,7 +1,7 @@
 import { instance } from "../axiosInstance";
-import type { Booking } from "../../types/BookingType";
+import type { BookingData } from "../../types/BookingType";
 
-export const getMyBookings = async (): Promise<Booking[]> => {
-  const res = await instance.get<Booking[]>("/bookings/me/bookings")
+export const getMyBookings = async (): Promise<BookingData[]> => {
+  const res = await instance.get<BookingData[]>("/bookings/me/bookings")
   return res.data
 }
