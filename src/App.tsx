@@ -11,6 +11,7 @@ import LoginPage from './pages/LoginPage'
 import SearchPage from './pages/SearchPage'
 import MyBookingsPage from './pages/MyBookingsPage'
 import ThankYouPage from './pages/ThankYouPage'
+import AboutPage from './pages/AboutPage'
 
 
 
@@ -31,6 +32,7 @@ function App() {
         <Route path='/search' element={<SearchPage />}/>
         <Route path='/mybookings' element={<MyBookingsPage />}/>
         <Route path='/thanks' element={<ThankYouPage />}/>
+        <Route path='/about' element={<AboutPage/>}/>
       </Route>
      </Routes>
     </>

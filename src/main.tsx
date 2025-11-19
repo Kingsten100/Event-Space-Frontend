@@ -21,6 +21,7 @@ import './pages/SearchPageStyles.css'
 import './pages/ProfilePageStyles.css'
 import './pages/MyBookingsPageStyles.css'
 import './pages/ThankYouPageStyles.css'
+import './pages/AboutPageStyles.css'
 
 
 createRoot(document.getElementById('root')!).render(
