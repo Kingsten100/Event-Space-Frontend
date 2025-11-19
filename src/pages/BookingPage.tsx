@@ -2,7 +2,7 @@ import { fetchListingById } from "@/api/listingService/GetLisitng"
 import { useBooking } from "@/context/BookingContext"
 import type { Listing } from "@/types/ListingType"
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 
 import { MdArrowRightAlt } from "react-icons/md";
 import { useAuth } from "@/context/AuthContext"
@@ -18,6 +18,8 @@ const BookingPage = () => {
 
   const [listing, setListing] = useState<Listing>()
   const [loading, setLoading] = useState(true)
+
+  const navigate = useNavigate()
 
   if(!booking) {
     return <p>No booking found</p>
@@ -55,6 +57,8 @@ const BookingPage = () => {
           const res = await createBooking(booking)
         } catch (err: any) {
           console.log('Something went wrong')
+        } finally {
+          navigate('/thanks')
         }
 
 
@@ -75,23 +79,23 @@ const BookingPage = () => {
               <h3 className="font-bold text-2xl">Payment</h3>
               <div className="flex flex-col gap-2">
                 <label htmlFor="name">Name on card</label>
-                <input className="inputfield" type="text" placeholder="John Doe"/>
+                <input className="inputfield" type="text" placeholder="John Doe" required/>
               </div>
 
               <div className="flex flex-col gap-2">
                 <label htmlFor="cardnumber">Card number</label>
-                <input type="text" className="inputfield" placeholder="0000 0000 0000 0000"/>
+                <input type="text" className="inputfield" placeholder="0000 0000 0000 0000" required/>
               </div>
 
               <div className="flex justify-between">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="expiration">Expiration date</label>
-                  <input type="text" className="inputfield-short" placeholder="01 / 01"/>
+                  <input type="text" className="inputfield-short" placeholder="01 / 01" required/>
                 </div>
 
                 <div className="flex flex-col gap-2">
                   <label htmlFor="security">Security code</label>
-                  <input type="text" className="inputfield-short" placeholder="123"/>
+                  <input type="text" className="inputfield-short" placeholder="123" required/>
                 </div>
               </div>
               <button className="pay-btn ">Confirm & pay</button>

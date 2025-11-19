@@ -20,6 +20,7 @@ import './pages/BookingPageStyles.css'
 import './pages/SearchPageStyles.css'
 import './pages/ProfilePageStyles.css'
 import './pages/MyBookingsPageStyles.css'
+import './pages/ThankYouPageStyles.css'
 
 
 createRoot(document.getElementById('root')!).render(

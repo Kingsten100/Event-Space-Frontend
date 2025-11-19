@@ -1,0 +1,29 @@
+.thanks-text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  height: 500px;
+
+  .thanks-title{
+    font-size: 1.5rem;
+    
+  }
+
+  .thanks-btn{
+    border: none;
+    width: 200px;
+    padding-block: .7rem;
+    border-radius: .5rem;
+    background-color: #FF6B6B;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .thanks-btn:hover{
+    background-color: hsl(0, 100%, 68%);
+  }
+
+}

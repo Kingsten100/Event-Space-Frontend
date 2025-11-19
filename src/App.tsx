@@ -10,6 +10,7 @@ import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import SearchPage from './pages/SearchPage'
 import MyBookingsPage from './pages/MyBookingsPage'
+import ThankYouPage from './pages/ThankYouPage'
 
 
 
@@ -29,6 +30,7 @@ function App() {
         <Route path='/profile' element={<ProfilePage />}/>
         <Route path='/search' element={<SearchPage />}/>
         <Route path='/mybookings' element={<MyBookingsPage />}/>
+        <Route path='/thanks' element={<ThankYouPage />}/>
       </Route>
      </Routes>
     </>
