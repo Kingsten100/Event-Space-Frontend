@@ -28,7 +28,7 @@ const MyBookingsPage = () => {
       <div className="bookings-wrapper">
         <div>
           <p className="welcome-text">Hello, {user.name}!</p>
-          <p>Here you can see all of your active bookings...</p>
+          <p>Here you can see all of your bookings...</p>
         </div>
 
         <div>
