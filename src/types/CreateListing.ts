@@ -1,5 +1,4 @@
-export interface Listing {
-  _id: string;
+export interface CreateListing {
   title: string;
   description: string;
   price: number;
@@ -9,7 +8,6 @@ export interface Listing {
   };
   images: string[];
   capacity: number;
-  averageRating: number;
   amenities: string[];
   category: string;
   rules: {
