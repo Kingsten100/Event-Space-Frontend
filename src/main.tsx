@@ -12,6 +12,7 @@ import './components/AuthForms/AuthFormStyles.css'
 import './components/ListingCard/ListingCardStyles.css'
 import './components/AdvancedFilter/AdvancedFilterStyles.css'
 import './components/BookedListingCard/BookedCardStyles.css'
+import './components/CreateListing/CreateListingStyles.css'
 
 import './pages/AuthPageStyles.css'
 import './pages/HomePageStyles.css'

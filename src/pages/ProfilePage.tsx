@@ -45,7 +45,7 @@ const ProfilePage = () => {
             </div>
 
             <div className="btn-flex">
-              {user.isHost ? <button className="listing-btn">My listings</button> : <button>Create a listing</button>}
+              <button onClick={() => {navigate('/create')}} className="listing-btn">Create a listing</button>
               <button onClick={() => {logout(); navigate('/')}} className="logout-btn">Logout</button>
             </div>
           </div>

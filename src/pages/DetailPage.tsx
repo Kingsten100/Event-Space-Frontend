@@ -4,15 +4,17 @@ import type { Listing } from "../types/ListingType"
 import { useParams } from "react-router"
 import { amenityIcons } from "../utils/AmenitiesIcons"
 import BookingCalendar from "../components/Calendar/BookingCalendar"
+import { fetchBookedDates } from "@/api/listingService/AvailableListing"
 
 const DetailPage = () => {
   const [listing, setListing] = useState<Listing>()
   const [loading, setLoading] = useState(true)
+  const [bookedDates, setBookedDates] = useState<{ startDate: string; endDate: string}[]>([])
 
   const { id } = useParams< {id: string}>()
 
   if(!id){
-    return
+    return null
   }
 
 
@@ -28,11 +30,22 @@ const DetailPage = () => {
         }
       }
       getListings()
-    }, [])
+    }, [id])
 
+    useEffect(() => {
+      const load = async () => {
+        const dates = await fetchBookedDates(id)
+        setBookedDates(dates)
+      }
+      load()
+    }, [id])
+
+    if (loading) return <p>Loading...</p>
     if(!listing){
       return null
     }
+
+
   return (
     <div className="container">
       <div className="content-layout">
@@ -89,7 +102,7 @@ const DetailPage = () => {
         </div>
         <div className="calendar-section">
           <div className="calendar">
-            <BookingCalendar price={listing.price} listingId={listing._id}/>
+            <BookingCalendar price={listing.price} listingId={listing._id} bookedDates={bookedDates}/>
           </div>
           
         </div>

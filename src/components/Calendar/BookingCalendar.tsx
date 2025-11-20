@@ -9,11 +9,12 @@ import { useBooking } from "@/context/BookingContext"
 interface BookingCalendarProps {
   price: number;
   listingId: string;
+  bookedDates: {startDate: string; endDate: string}[]
 }
 
 
 
-const BookingCalendar = ({ price, listingId }: BookingCalendarProps ) => {
+const BookingCalendar = ({ price, listingId, bookedDates }: BookingCalendarProps ) => {
   const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
     from: new Date(),
     to: new Date(),
@@ -23,6 +24,22 @@ const BookingCalendar = ({ price, listingId }: BookingCalendarProps ) => {
   const { user } = useAuth()
   const { createBooking } = useBooking()
   const navigate = useNavigate()
+
+  const disabledDays = bookedDates.flatMap(range => {
+  const start = new Date(range.startDate)
+  const end = new Date(range.endDate)
+
+  const days = []
+  const cur = new Date(start)
+
+  while (cur <= end) {
+    days.push(new Date(cur))
+    cur.setDate(cur.getDate() + 1)
+  }
+
+  return days
+})
+
   
 
   const handleSubmit = () => {
@@ -62,11 +79,11 @@ const BookingCalendar = ({ price, listingId }: BookingCalendarProps ) => {
         </div>
 
         <Calendar
-          initialFocus
           mode="range"
           selected={dateRange}
           onSelect={setDateRange}
           numberOfMonths={1}
+          disabled={disabledDays}
           className="rounded-md border border-none w-[400px] h-[430px] text-lg p-2 border-r-2 overflow-hidden"
         />
       </div>
