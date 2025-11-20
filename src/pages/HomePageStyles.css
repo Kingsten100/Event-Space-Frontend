@@ -5,6 +5,7 @@
 .hero-container{
   background-color: #FF6B6B;
   height: 490px;
+  width: 100%;
   border-radius: 2rem;
   display: flex;
   align-items: center;
@@ -13,7 +14,6 @@
 }
 
 .hero-content{
-  
   padding-left: 2rem;
   display: flex;
   flex-direction: column;
@@ -86,7 +86,7 @@
   margin-top: 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  /* justify-items:center; */
+  justify-items:center;
   row-gap: 2rem;
   padding-bottom: 3rem;
 }
@@ -94,4 +94,51 @@
 .venue-title{
   font-size: 1.2rem;
   font-weight: 400;
+}
+
+@media (max-width: 1300px) {
+  .venues-container {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+
+  .hero-img-container{
+    display: none;
+  }
+
+  .hero-container {
+    justify-content: center;
+  }
+
+
+}
+
+
+@media (max-width: 1024px) {
+  .venues-container {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+  
+}
+
+
+@media (max-width: 600px) {
+  .venues-container {
+    grid-template-columns: 1fr;
+  }
+
+  .searchbar{
+    width: 100%;
+  }
+
+  .search-btn{
+    width: 60px;
+    height: 50px;
+  }
+
+  .hero-content{
+    margin: 0;
+    padding: 0;
+  }
+  
 }

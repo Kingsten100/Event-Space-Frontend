@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router'
 import  { useAuth } from '../../context/AuthContext'
 
@@ -6,7 +6,9 @@ const Navbar = () => {
 
   const { user } = useAuth()
 
-  const token = localStorage.getItem('token')
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  const toggleMobileMenu = () => setMobileOpen(prev => !prev)
 
   return (
     <div>
@@ -17,8 +19,9 @@ const Navbar = () => {
           
           </a>
         </div>
-   
-       
+
+        <div>
+
         <div className='navbar-btns'>
           <div >
             <ul className='navlinks-container'>
@@ -34,8 +37,28 @@ const Navbar = () => {
 
         </div>
 
+        <div className="mobile-menu-btn" onClick={toggleMobileMenu}>
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+        </div>
+        {mobileOpen && (
+          <div className="mobile-nav">
+              <NavLink to="/" onClick={() => setMobileOpen(false)}>Home</NavLink>
+              <NavLink to="/search" onClick={() => setMobileOpen(false)}>Venues</NavLink>
+              <NavLink to="/about" onClick={() => setMobileOpen(false)}>About Us</NavLink>
+              <NavLink to="/mybookings" onClick={() => setMobileOpen(false)}>My Bookings</NavLink>
+              {user ? (
+                <NavLink to="/profile" onClick={() => setMobileOpen(false)}>Profile</NavLink>
+              ) : (
+                <NavLink to="/login" onClick={() => setMobileOpen(false)}>Login</NavLink>
+              )}
+            </div>
+            )}
+          </div>
+        </div>
+
       </div>
-    </div>
   )
 }
 

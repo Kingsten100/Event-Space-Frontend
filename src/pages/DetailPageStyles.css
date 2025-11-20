@@ -55,13 +55,43 @@
     }
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 900px) {
     .image-grid{
       grid-template-columns: 1fr;
+      
+    }
+    .img-container{
+      padding-left: 1rem;
     }
 
     .image-grid-two{
       display: none;
+      
+    }
+  }
+
+  @media (max-width: 780px) {
+    
+
+    .img-container{
+      
+      margin: 0;
+      padding: 0;
+    }
+    .img-container{
+      padding-left: 1rem;
+      overflow: hidden;
+      border-radius: 1rem;
+
+      img{
+        border-radius: 1rem;
+      }
+    }
+
+    .image-grid-one{
+      display: none;
+      padding: 0;
+      
     }
   }
 
@@ -142,4 +172,10 @@
 
 .book-btn:hover{
   background-color: hsl(0, 100%, 68%);
+}
+
+@media (max-width: 1300px) {
+  .content-layout {
+    flex-direction: column;
+  }
 }

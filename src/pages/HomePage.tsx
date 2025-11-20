@@ -64,7 +64,7 @@ const HomePage = () => {
               <h1>An easier way to find your venue</h1>
               <p>To find a venue should bring joy, not stress</p>
             </div>
-            <div>
+            <div className="center">
               <form onSubmit={handleSubmit} className="search-form">
                 <input className="searchbar" type="text" placeholder="Search for a city or area..." value={query} onChange={(e) => setQuery(e.target.value)}/>
                 <button className="search-btn"><IoMdSearch /></button>
@@ -76,24 +76,23 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-    
+     
       <div className="container party-container">
-        <div>
-          <h3 className="venue-title">Party</h3>
+        <div className="container">
+          <h3 className="venue-title ">Party</h3>
         </div>
-        <div className="venues-container">
-          {
-            partyVenues.map((p) => (
-              <ListingCard key={p._id} listing={p}/>
-            ))
-          }
+          <div className="venues-container">
+            {
+              partyVenues.map((p) => (
+                <ListingCard key={p._id} listing={p}/>
+              ))
+            }
 
-        </div>
-        
+          </div>
       </div>
 
       <div className="party-container container">
-        <div>
+        <div className="container">
           <h3 className="venue-title">Banquets</h3>
         </div>
         <div className="venues-container">
@@ -103,11 +102,11 @@ const HomePage = () => {
             ))
           }
         </div>
-        
+         
       </div>
 
       <div className="party-container container">
-        <div>
+        <div className="container">
           <h3 className="venue-title">Conference</h3>
         </div>
         <div className="venues-container">

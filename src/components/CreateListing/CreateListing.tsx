@@ -66,7 +66,7 @@ const CreateListing = () => {
         <form className="create-form-container" onSubmit={handleSubmit}>
           <div className="form-content">
             <label htmlFor="title">Title</label>
-            <input
+            <input className="input"
               type="text"
               value={formData.title}
               onChange={e => handleChange("title", e.target.value)}
@@ -75,7 +75,7 @@ const CreateListing = () => {
 
           <div className="form-content">
             <label htmlFor="description">Description</label>
-            <textarea
+            <textarea className="input-textarea"
               value={formData.description}
               onChange={e => handleChange("description", e.target.value)}
             />
@@ -83,7 +83,7 @@ const CreateListing = () => {
 
           <div className="form-content">
             <label htmlFor="capacity">Capacity</label>
-            <input
+            <input className="input-capacity"
               type="number"
               value={formData.capacity}
               onChange={e => handleChange("capacity", +e.target.value)}
@@ -92,7 +92,7 @@ const CreateListing = () => {
 
           <div className="form-content">
             <label htmlFor="price">Price per day</label>
-            <input
+            <input className="input-capacity"
               type="number"
               value={formData.price}
               onChange={e => handleChange("price", +e.target.value)}
@@ -101,16 +101,16 @@ const CreateListing = () => {
 
           <div className="form-content">
             <label htmlFor="address">Address</label>
-            <input
+            <input className="input"
               type="text"
               value={formData.address}
               onChange={e => handleChange("address", e.target.value)}
             />
           </div>
-
+ 
           <div className="form-content">
             <label htmlFor="city">City</label>
-            <input
+            <input className="input"
               type="text"
               value={formData.location.city}
               onChange={e => handleLocationChange("city", e.target.value)}
@@ -119,7 +119,7 @@ const CreateListing = () => {
 
           <div className="form-content">
             <label htmlFor="region">Region</label>
-            <input
+            <input className="input"
               type="text"
               value={formData.location.region}
               onChange={e => handleLocationChange("region", e.target.value)}
@@ -129,21 +129,24 @@ const CreateListing = () => {
           <p>Amenities</p>
           <div className="amenity-grid">
             {amenities.map(a => (
-              <label key={a}>
-                <input
-                  type="checkbox"
-                  checked={formData.amenities.includes(a)}
-                  onChange={() =>
-                    setFormData(prev => ({
-                      ...prev,
-                      amenities: prev.amenities.includes(a)
-                        ? prev.amenities.filter(x => x !== a)
-                        : [...prev.amenities, a]
-                    }))
-                  }
-                />
-                {a}
-              </label>
+              <div >
+                <label key={a}>
+                  <input
+                    type="checkbox"
+                    checked={formData.amenities.includes(a)}
+                    onChange={() =>
+                      setFormData(prev => ({
+                        ...prev,
+                        amenities: prev.amenities.includes(a)
+                          ? prev.amenities.filter(x => x !== a)
+                          : [...prev.amenities, a]
+                      }))
+                    }
+                  />
+                  {a}
+                </label>
+
+              </div>
             ))}
           </div>
 

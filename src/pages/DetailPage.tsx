@@ -43,7 +43,7 @@ const DetailPage = () => {
     if (loading) return <p>Loading...</p>
     if(!listing){
       return null
-    }
+    } 
 
 
   return (
