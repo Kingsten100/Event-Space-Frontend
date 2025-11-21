@@ -55,7 +55,7 @@ const DetailPage = () => {
             <div className="img-container">
               <img src={listing?.images[0]} alt="" />
             </div>
-
+ 
             <div className="image-grid">
               <div className="image-grid-one">
                 <img src={listing?.images[0]} alt="" />

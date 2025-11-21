@@ -84,7 +84,8 @@ const BookingCalendar = ({ price, listingId, bookedDates }: BookingCalendarProps
           onSelect={setDateRange}
           numberOfMonths={1}
           disabled={disabledDays}
-          className="rounded-md border border-none w-[400px] h-[430px] text-lg p-2 border-r-2 overflow-hidden"
+          className="rounded-md border border-none w-full max-w-[400px] text-lg p-2 overflow-hidden"
+
         />
       </div>
         <div className="flex flex-col gap-1 pt-1">

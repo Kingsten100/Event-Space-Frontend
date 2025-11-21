@@ -98,7 +98,20 @@
     background-color: hsl(0, 100%, 69%);
   }
 
+  
+
   .gap{
-    margin-top: 1rem;
+      display: flex;
+      gap: .3rem;
+      margin-top: .3rem;
+      align-items: center;
+    }
+
+  @media(max-width: 900px){
+    .amenity-grid{
+      grid-template-columns: 1fr 1fr;
+      
+    }
+    
   }
 }

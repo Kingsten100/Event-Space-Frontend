@@ -22,3 +22,13 @@
     margin-block: 3rem;
   }
 }
+
+@media(max-width: 900px){
+  .section-one{
+    flex-direction: column;
+  }
+
+  .section-two{
+    flex-direction: column;
+  }
+}

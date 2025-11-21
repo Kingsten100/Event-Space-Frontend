@@ -71,7 +71,7 @@ const BookingPage = () => {
         <p>You’re almost there — complete your Eventspace booking</p>        
       </div>
 
-      <div className="flex gap-5">
+      <div className="flex gap-5 booking-layout">
 
         <div>
           <div className="payment-container">

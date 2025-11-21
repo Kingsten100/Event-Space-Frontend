@@ -101,3 +101,19 @@
 .padding{
   padding-top: 2rem;
 }
+
+@media(max-width: 900px){
+  .booking-layout{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .selected-venue{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .booking-img{
+    width: 100%;
+  }
+}

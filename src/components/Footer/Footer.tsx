@@ -6,7 +6,7 @@ const Footer = () => {
     <div className='footer-wrapper'>
       <div className='container footer-flex'>
         <div>
-          <img src="../../public/Logotype2.svg" alt="" />
+          <img className='logo' src="../../public/Logotype2.svg" alt="" />
         </div>
         <div className='links-container'>
           <ul>

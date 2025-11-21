@@ -4,10 +4,13 @@ import CreateListingImages from "./ImageList"
 import type { Listing } from "@/types/ListingType"
 import { instance } from "@/api/axiosInstance"
 import type { CreateListing } from "@/types/CreateListing"
+import { Navigate, useNavigate } from "react-router"
 
 const CreateListing = () => {
   const [categories, setCategories] = useState<string[]>([])
   const [amenities, setAmenities] = useState<string[]>([])
+
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState<CreateListing>({
     title: "",
@@ -54,6 +57,7 @@ const CreateListing = () => {
     try {
       const res = await instance.post("/listing/create", formData)
       console.log("Listing created:", res.data)
+      navigate('/')
     } catch (err) {
       console.error(err)
     }
@@ -130,7 +134,7 @@ const CreateListing = () => {
           <div className="amenity-grid">
             {amenities.map(a => (
               <div >
-                <label key={a}>
+                <label className="gap" key={a}>
                   <input
                     type="checkbox"
                     checked={formData.amenities.includes(a)}
